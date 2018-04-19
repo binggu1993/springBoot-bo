@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<title></title>
+<link href="../../css/bootstrap.css" rel="stylesheet" />
+<link href="../../css/font-awesome.css" rel="stylesheet" />
+
+
+</head>
+<body ng-app="dianboRealTime" ng-controller="dianboRealTimeCtrl">
+	<div id="page-inner">
+		<div class="row">
+			<div class="search-condition"  style="margin-left: 0px;">
+				<div class="panel  panel-bottom">
+					<!-- <div class="panel-heading panel-heading-weight">实时直播监控图表 </div> -->
+					<div class="panel-body">
+
+						<form class="form-inline">
+							<div class="row">
+								<div  class="search-condition-div chart-condition">
+
+									<label for="exampleInputName2">监控时段：</label>
+									
+						           <select   
+										class="form-control form-width-90"  ng-model="selMin">
+										<option ng-repeat="time in period" value="{{time.min}}" >{{time.mins}}</option>
+									</select>
+										
+									
+									<button class="btn btn-info chart-condition-space" ng-click="sendSearchRequest(0,0)">
+										 开始监控
+									</button>
+									<button class="btn btn-danger" ng-click="sendSearchRequest(0,1)">
+										 停止监控
+									</button>
+								</div>
+
+
+							<!-- 	<div id="searchBtnDiv" class="search-button chart-condition-space" ">
+									
+								</div> -->
+							</div>
+							</form>
+							
+						
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+					</div>
+				</div>
+			</div>
+			
+			
+				
+							
+							<div  class="chart-left">
+							     
+							      
+							        <div class="chart-left-area">选择地域：</div>
+							   						     <div  class="chart-left-areas">
+							     <span ng-repeat="area in areas">								 
+								<div class="radio">
+								  <label><input type="radio" name="opArea" id="opArea" value="{{area.areaCode}}" ng-click="selectArea(area.areaCode)" ng-model="theArea" ng-checked="selectedarea(area.areaCode)">
+								  {{ area.areaName }}</label>
+								  </div>
+								</span>
+
+							      </div>
+							
+							 
+							       <div class="chart-left-area"> 选择提供商：</div>
+							     
+							     <div  class="chart-left-areas">
+							     								 
+								 <div class="checkbox" >
+								 <span ng-repeat="aptitude in aptitudes">
+								  <label><input type="checkbox" ng-click="" name="aptitudeBox" value="{{aptitude.code}}" ng-checked="isSelected(aptitude.code)">
+								  {{ aptitude.name }}</label><br>
+								  </span>
+								  </div>
+								
+								</div>
+							</div>
+							<div  class="chart-right">
+							        
+							        
+
+
+
+
+
+    <div class="row">
+                <div class="col-md-12 col-sm-6 search-data">
+                    <div class="panel panel-default">
+            
+                        <div class="panel-body">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#count" ng-click="spWatchCount(0)" data-toggle="tab">SP点播次数</a>
+                                
+                                </li>
+                                <li class=""><a href=""  data-toggle="tab" ng-click="spUsersCount(0)">SP点播用户数</a>
+                                </li>
+<!--                                 <li class=""><a href="" data-toggle="tab" ng-click="watchTop(0)">节目点播次数</a>
+                                </li>
+                                <li class=""><a href="" data-toggle="tab" ng-click="userTop(0)">节目点播用户数</a>
+                                <li class=""><a href="" data-toggle="tab" ng-click="categoryTop(0)">栏目点播热度排行</a> -->
+                                </li>
+                                </li>
+                            </ul>
+                            <div class="tab-content"  ng-bind-html="specialHtml">
+<!--                                 <div class="tab-pane fade" id="userCount">
+                                       <iframe id="kibanaFrame" name="kibanaFrame"  border="0"	class="frame-border" marginwidth="0" marginheight="0" height="600" width="100%" src="http://192.168.2.202:5601/app/kibana#/visualize/edit/3e6f71c0-ce86-11e7-b4a6-a3eceaa2372f?embed=true&_g=(refreshInterval:(display:'30+seconds',pause:!f,section:1,value:30000),time:(from:now%2Fy,mode:quick,to:now%2Fy))&_a=(filters:!(),linked:!f,query:(query_string:(analyze_wildcard:!t,query:'(start_time:%5B0+TO+1497803520000%5D+AND+end_time:%5B1497803460000+TO+9999999999999%5D)+OR+(start_time:%5B0+TO+1497826689000%5D+NOT++end_time:*)')),uiState:(),vis:(aggs:!((enabled:!t,id:'1',params:(customLabel:%E6%94%B6%E8%A7%86%E7%94%A8%E6%88%B7%E6%95%B0,field:user_code.keyword),schema:metric,type:cardinality),(enabled:!t,id:'2',params:(filters:!(('$$hashKey':'object:1344',input:(query:(query_string:(analyze_wildcard:!t,query:'live.service_id:%22100%22'))),label:CCTV1),('$$hashKey':'object:1347',input:(query:(query_string:(analyze_wildcard:!t,query:'live.service_id:%22112%22'))),label:%E6%B7%B1%E5%9C%B3%E5%8D%AB%E8%A7%86),('$$hashKey':'object:1348',input:(query:(query_string:(analyze_wildcard:!t,query:'live.service_id:%22144%22'))),label:CCTV2))),schema:segment,type:filters)),listeners:(),params:(addLegend:!t,addTimeMarker:!f,addTooltip:!t,categoryAxes:!((id:CategoryAxis-1,labels:(show:!t,truncate:100),position:bottom,scale:(type:linear),show:!t,style:(),title:(text:filters),type:category)),defaultYExtents:!f,drawLinesBetweenPoints:!t,grid:(categoryLines:!f,style:(color:%23eee)),interpolate:linear,legendPosition:right,radiusRatio:9,scale:linear,seriesParams:!((data:(id:'1',label:%E6%94%B6%E8%A7%86%E7%94%A8%E6%88%B7%E6%95%B0),drawLinesBetweenPoints:!t,mode:stacked,show:true,showCircles:!t,type:histogram,valueAxis:ValueAxis-1)),setYExtents:!f,showCircles:!t,times:!(),valueAxes:!(('$$hashKey':'object:1385',id:ValueAxis-1,labels:(filter:!f,rotate:0,show:!t,truncate:100),name:LeftAxis-1,position:left,scale:(mode:normal,type:linear),show:!t,style:(),title:(text:%E6%94%B6%E8%A7%86%E7%94%A8%E6%88%B7%E6%95%B0),type:value))),title:itdap-%E9%A2%91%E9%81%93%E7%BB%84%E4%B8%80%E5%88%86%E9%92%9F%E5%AE%9E%E6%97%B6%E7%94%A8%E6%88%B7%E6%83%85%E5%86%B5,type:histogram))"  ></iframe>
+                                   
+                                     </div>
+                                <div class="tab-pane fade" id="ratings">
+                                   
+                                    <iframe id="kibanaFrame2" name="kibanaFrame"  border="0"	class="frame-border"  marginwidth="0" marginheight="0" height="600" width="100%"  src="http://192.168.2.202:5601/app/kibana#/visualize/edit/0d5626f0-cf2c-11e7-844e-1d159c08a427?embed=true&_g=(refreshInterval:( display:'30+seconds',pause:!f,section:1,value:30000),time:(from:now%2Fy,mode:quick,to:now%2Fy))&_a=(filters:!(),linked:!f,query:(query_string:(analyze_wildcard:!t,query:'start_time:%5B1497803460000++TO+1497803520000%5D')),uiState:(spy:(mode:(fill:!f,name:table))),vis:(aggs:!((enabled:!t,id:'1',params:(customLabel:'',field:duration_time,json:'%7B%22script%22:%22doc%5B!'duration_time!'%5D.value+%2F4000.00%22%7D'),schema:metric,type:sum),(enabled:!t,id:'2',params:(filters:!(('$$hashKey':'object:2006',input:(query:(query_string:(analyze_wildcard:!t,query:'live.service_id:%22100%22'))),label:CCTV1),('$$hashKey':'object:2019',input:(query:(query_string:(analyze_wildcard:!t,query:'live.service_id:%22112%22'))),label:%E6%B7%B1%E5%9C%B3%E5%8D%AB%E8%A7%86),('$$hashKey':'object:2062',input:(query:(query_string:(analyze_wildcard:!t,query:'live.service_id:%22144%22'))),label:CCTV2))),schema:segment,type:filters)),listeners:(),params:(addLegend:!t,addTimeMarker:!f,addTooltip:!t,categoryAxes:!((id:CategoryAxis-1,labels:(show:!t,truncate:100),position:bottom,scale:(type:linear),show:!t,style:(),title:(text:filters),type:category)),defaultYExtents:!f,drawLinesBetweenPoints:!t,grid:(categoryLines:!f,style:(color:%23eee)),interpolate:linear,legendPosition:right,radiusRatio:9,scale:linear,seriesParams:!((data:(id:'1',label:'Sum+of+duration_time'),drawLinesBetweenPoints:!t,mode:stacked,show:true,showCircles:!t,type:histogram,valueAxis:ValueAxis-1)),setYExtents:!f,showCircles:!t,times:!(),valueAxes:!(('$$hashKey':'object:1933',id:ValueAxis-1,labels:(filter:!f,rotate:0,show:!t,truncate:100),name:LeftAxis-1,position:left,scale:(mode:normal,type:linear),show:!t,style:(),title:(text:'Sum+of+duration_time'),type:value))),title:itdap_%E9%A2%91%E9%81%93%E4%B8%80%E5%88%86%E9%92%9F%E5%AE%9E%E6%97%B6%E6%94%B6%E8%A7%86%E7%8E%87,type:histogram))"  ></iframe>
+                                   </div>
+                                   
+                                <div class="tab-pane fade" id="maketRatings">
+                                  <iframe id="kibanaFrame" name="kibanaFrame"  border="0"	class="frame-border"  marginwidth="0" marginheight="0" height="600" width="100%" src="http://192.168.2.202:5601/app/kibana#/visualize/edit/16013cf0-ce68-11e7-bfa2-699e7b23d23a?embed=true&_g=(refreshInterval:( display:'30+seconds',pause:!f,section:1,value:30000),time:(from:now%2Fy,mode:quick,to:now%2Fy))&_a=(filters:!(),linked:!f,query:(query_string:(analyze_wildcard:!t,query:'(start_time:%5B0+TO+1497803520000%5D+AND+end_time:%5B1497803460000+TO+9999999999999%5D)+OR+(start_time:%5B0+TO+1497826689000%5D+NOT++end_time:*)')),uiState:(spy:(mode:(fill:!f,name:!n))),vis:(aggs:!((enabled:!t,id:'1',params:(field:user_code.keyword),schema:metric,type:cardinality),(enabled:!t,id:'2',params:(customLabel:%E5%AE%9E%E6%97%B6%E9%A2%91%E9%81%93%E7%9B%B4%E6%92%AD%E5%B8%82%E5%9C%BA%E5%8D%A0%E6%9C%89%E7%8E%87,field:live.service_id.keyword,order:desc,orderBy:'1',size:1000),schema:segment,type:terms)),listeners:(),params:(addLegend:!t,addTooltip:!t,isDonut:!f,legendPosition:right),title:itdap-%E5%AE%9E%E6%97%B6%E5%B8%82%E5%9C%BA%E5%8D%A0%E6%9C%89%E7%8E%87%E9%A5%BC%E5%9B%BE,type:pie))"  ></iframe>
+                                   </div>
+                                   
+                                    <div class="tab-pane fade" id="inAndOut">
+                                  <iframe id="kibanaFrame" name="kibanaFrame"  border="0"	class="frame-border"  marginwidth="0" marginheight="0" height="600" width="100%" src="http://192.168.2.202:5601/app/kibana#/dashboard/83ee37f0-a4e6-11e7-9658-73783aad3937?embed=true&_g=(refreshInterval:(display:on,pause:!t,value:10),time:(from:'Mon+Jul+17+2017+14:20:42+GMT%2B0800',mode:absolute,to:'Sat+Jul+22+2017+14:35:42+GMT%2B0800'))&_a=(filters:!(),options:(darkTheme:!f),panels:!((col:1,id:'4c4da600-a4e6-11e7-9658-73783aad3937',panelIndex:1,row:1,size_x:6,size_y:3,type:visualization),(col:7,id:'8f48f6a0-9134-11e7-8310-4706f3445e01',panelIndex:2,row:1,size_x:6,size_y:3,type:visualization),(col:1,id:c3c76630-9122-11e7-8310-4706f3445e01,panelIndex:3,row:4,size_x:6,size_y:3,type:visualization),(col:7,id:e4f4ac50-9154-11e7-addd-754e61143f1b,panelIndex:4,row:4,size_x:6,size_y:3,type:visualization)),query:(query_string:(analyze_wildcard:!t,query:'*')),timeRestore:!t,title:czj2001,uiState:(P-1:(spy:(mode:(fill:!f,name:!n))),P-2:(spy:(mode:(fill:!f,name:!n)),vis:(legendOpen:!f)),P-3:(spy:(mode:(fill:!f,name:!n))),P-4:(vis:(legendOpen:!f))),viewMode:view)"  ></iframe>
+                                   </div> -->
+                                   
+                            </div>
+<!--                                <iframe id="iframe-projects" name="kibanaFrame2"  border="0" class="frame-border"  marginwidth="0" marginheight="0" height="600" width="100%"  ng-src="{{trustSrc}}" src="http://192.168.2.202:5601/app/kibana#/visualize/edit/3b5ac570-ce8b-11e7-9439-bb9a6c2ce511?embed=true&_g=(refreshInterval:(display:'30+seconds',pause:!f,section:1,value:30000),time:(from:now%2Fy,mode:quick,to:now%2Fy))&_a=(filters:!(),linked:!f,query:(query_string:(analyze_wildcard:!t,query:'start_time:%5B1497803460000++TO+1497803520000%5D')),uiState:(),vis:(aggs:!((enabled:!t,id:'1',params:(customLabel:%E6%94%B6%E8%A7%86%E6%AC%A1%E6%95%B0),schema:metric,type:count),(enabled:!t,id:'2',params:(filters:!(('$$hashKey':'object:616',input:(query:(query_string:(analyze_wildcard:!t,query:'live.service_id:%22100%22'))),label:CCTV1),('$$hashKey':'object:619',input:(query:(query_string:(analyze_wildcard:!t,query:'live.service_id:%22112%22'))),label:%E6%B7%B1%E5%9C%B3%E5%8D%AB%E8%A7%86),('$$hashKey':'object:620',input:(query:(query_string:(analyze_wildcard:!t,query:'live.service_id:%22144%22'))),label:CCTV2))),schema:segment,type:filters)),listeners:(),params:(addLegend:!t,addTimeMarker:!f,addTooltip:!t,categoryAxes:!((id:CategoryAxis-1,labels:(show:!t,truncate:100),position:bottom,scale:(type:linear),show:!t,style:(),title:(text:filters),type:category)),defaultYExtents:!f,drawLinesBetweenPoints:!t,grid:(categoryLines:!f,style:(color:%23eee)),interpolate:linear,legendPosition:right,radiusRatio:9,scale:linear,seriesParams:!((data:(id:'1',label:%E6%94%B6%E8%A7%86%E6%AC%A1%E6%95%B0),drawLinesBetweenPoints:!t,mode:stacked,show:true,showCircles:!t,type:histogram,valueAxis:ValueAxis-1)),setYExtents:!f,showCircles:!t,times:!(),valueAxes:!(('$$hashKey':'object:657',id:ValueAxis-1,labels:(filter:!f,rotate:0,show:!t,truncate:100),name:LeftAxis-1,position:left,scale:(mode:normal,type:linear),show:!t,style:(),title:(text:%E6%94%B6%E8%A7%86%E6%AC%A1%E6%95%B0),type:value))),title:itdap_%E9%A2%91%E9%81%93%E7%BB%84%E4%B8%80%E5%88%86%E9%92%9F%E5%AE%9E%E6%97%B6%E6%94%B6%E8%A7%86%E6%AC%A1%E6%95%B0,type:histogram))"  ></iframe> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+							</div>
+		</div>
+         <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close" ng-click="goToUrl('tableModelList.html');">
+							<span aria-hidden="true">×</span>
+						</button>
+						<h6 class="modal-title" id="resultModalCtx">操作成功！</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+
+
+
+
+		 
+		
+
+
+<script src="../../js/home/jquery-1.10.2.js"></script>
+<script src="../../js/home/bootstrap.min.js"></script>
+<script src="../../plugins/angular-1.6.5/angular.min.js" language="javascript"></script>
+<script src="../../js/home/ui-bootstrap-tpls.min.js" language="javascript"></script> 
+<script src="../../js/common/avitUtils.js" language="javascript"></script>
+<script src="../../js/common/chartUtil.js" language="javascript"></script>
+<script src="../../js/chart/dianboRealTime.js"></script>
+			
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<title></title>
+<link href="../../css/bootstrap.css" rel="stylesheet" />
+<link href="../../css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="../../css/topChart.css?v=ab16059fb6c335dcf32e2001626ee521">
+
+
+</head>
+<body ng-app="playBackTop" ng-controller="playBackTopCtrl" style="background: #373D41;">
+    <!-- 页面展示容器 -->
+    			<div class="search-condition"  style="margin-left: 0px;padding-left:0px;background: #aab2bb;">
+				<div class="panel  panel-bottom">
+					<div class="panel-body" style="background: #aab2bb;">
+
+						<form class="form-inline">
+						<div class="row">
+						<label for="exampleInputName2"  style="color:#fff;padding-left: 80px;">报表类型：</label>
+						<select   class="form-control search-input"  ng-model="thechartType" style="width: 170px;color:#373D41" ng-change="change()">
+										<option ng-repeat="chart in chartTypes" value="{{chart.type}}" >{{ chart.typeName }}</option>
+						</select>
+						
+						
+					     <label for="exampleInputName2"  style="color:#fff;padding-left: 40px;">统计周期：</label>
+						<select   class="form-control search-input"  ng-model="dateType" style="width: 170px;color:#373D41" ng-change="change()">
+										<option ng-repeat="dateType in dateTypes" value="{{dateType.type}}" >{{ dateType.typeName }}</option>
+						</select>
+						
+						
+						<label for="exampleInputName2"  style="color:#fff;padding-left: 40px;">开始时间：</label>
+									<p class="input-group">
+									                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" readonly ng-model="newWordQueryObj.startTime" is-open="startPopupOpened" datepicker-options="startDateOptions" ng-required="true" close-text="关闭" clear-text="清空" current-text="今天" />
+									                  <span class="input-group-btn">
+									                    <button type="button" class="btn btn-default" ng-click="startOpen()"><i class="glyphicon glyphicon-calendar"></i></button>
+									                  </s pan>
+									                </p>
+						</div>
+							<div class="row">
+								<div  class="search-condition-div" style="margin-left: 80px;padding-left:0px;background: #aab2bb;margin-top: 10px">
+									
+									
+									         
+					                <label for="exampleInputName2" style="color:#fff;">频道： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     </label>
+									
+						           <select   
+										class="form-control search-input"  ng-model="mychannel" style="width: 170px;">
+										<option ng-repeat="channel in channels" value="{{channel.serviceId}}" >{{ channel.channelName }}</option>
+									</select>
+									
+									
+										
+									     <label for="exampleInputName2" style="padding-left: 40px;color:#fff;">区域：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+									
+						           <select   
+										class="form-control search-input"  ng-model="theArea" style="width: 170px;">
+										<option ng-repeat="area in areas" value="{{area.areaCode}}" >{{ area.areaName }}</option>
+									</select>
+									
+									
+									 <label for="exampleInputName2" style="padding-left:42px;color:#fff;">显示条数：</label>
+						           <select   
+										class="form-control search-input"  ng-model="pagess" style="width: 170px;">
+										<option ng-repeat="pageSize in pageSizes" value="{{pageSize.num}}" >{{pageSize.numName}}</option>
+									</select>
+									
+									<button style="margin-left: 30px;" class="btn btn-info chart-condition-space" ng-click="sendSearchRequest()">
+										 查询
+									</button>
+																			
+								</div>
+
+							</div>
+							</form>
+					</div>
+				</div>
+			</div>
+		<div style="position:absolute; width:1200px;height:800px; overflow:auto">
+	    <div id="watchCount"   class="content_container" ng-show="showChartType=='timeCount'">
+        <div class="attention">
+            <div class="attenitem">
+                <div class="atten1">排名</div>
+                <div class="atten2">节目名称</div>
+                <div class="atten3">回看次数</div>
+            </div>
+        </div> 
+        <div ng-show="{{rankDatas.length>0}}">   
+        <div class="ranklist" ng-repeat="rank in rankDatas" >
+                 <div class="rankitem" >
+                    <div class="atten1">
+                        {{$index+1}}
+                    </div>
+              
+                    <div class="atten2">
+                         {{rank.epgName}}
+                    </div>
+                    <div class="atten3">
+                        <span><i style="width:{{rank.timeCount/maxData*100}}%;"></i></span>
+                         {{rank.timeCount}}</div>
+          </div>
+    </div>
+    </div>
+    
+    <div ng-show="rankDatas.length==0"> 
+    <div class="ranklist">
+                 <div class="rankitem" >
+                    <div class="atten1">
+                    暂无数据
+                    </div>
+              
+                    <div class="atten2">
+                    </div>
+                    <div class="atten3">
+                       </div>
+          </div>
+    </div>
+    </div>  
+    </div>
+    
+    
+    
+    <div id="userCount"   class="content_container" ng-show="showChartType=='userCount'">
+        <div class="attention">
+            <div class="attenitem">
+                <div class="atten1">排名</div>
+                <div class="atten2">节目名称</div>
+                <div class="atten4">回看人数</div>
+            </div>
+        </div>    
+        <div class="ranklist" ng-repeat="rank in rankDatas" >
+                 <div class="rankitem" >
+                    <div class="atten1">
+                        {{$index+1}}
+                    </div>
+              
+                    <div class="atten2">
+                         {{rank.epgName}}
+                    </div>
+                    <div class="atten3">
+                        <span><i style="width:{{rank.userCount/maxData*100}}%;"></i></span>
+                        {{rank.userCount}}</div>
+                    
+                </div> 
+                
+    </div>
+    </div>
+    
+    
+    
+   <div id="duration"   class="content_container" ng-show="showChartType=='sumDuration'">
+        <div class="attention">
+            <div class="attenitem">
+                <div class="atten1">排名</div>
+                <div class="atten2">节目名称</div>
+                <div class="atten4">回看总时长</div>
+            </div>
+        </div>    
+        <div class="ranklist" ng-repeat="rank in rankDatas" >
+        <div ng-show="{{rank.epgName!=null}}">
+                 <div class="rankitem" >
+                    <div class="atten1">
+                        {{$index+1}}
+                    </div>
+              
+             <div class="atten2">
+                         {{rank.epgName}}
+                    </div>
+                    <div class="atten3">
+                        <span><i style="width:{{rank.sumDuration/maxData*100}}%;"></i></span>
+                        {{rank.sumDuration}}</div>
+                </div> 
+                </div>
+                
+                 <div ng-show="{{rankDatas==null}}">
+                          <div class="rankitem" >
+                    <div class="atten1">
+                       暂无数据
+                    </div>
+              
+                    <div class="atten2">
+                        </div>
+                    <div class="atten3">
+                     </div>
+                    
+                </div> 
+        </div>
+    </div>
+    </div>
+    
+    </div>
+    
+<script src="../../js/home/jquery-1.10.2.js"></script>
+<script src="../../js/home/bootstrap.min.js"></script>
+<script src="../../plugins/angular-1.6.5/angular.min.js" language="javascript"></script>
+<script src="../../js/home/ui-bootstrap-tpls.min.js" language="javascript"></script> 
+<script src="../../js/home/angular-locale_zh.js" language="javascript"></script>
+<script src="../../js/common/avitUtils.js" language="javascript"></script>
+<script src="../../js/common/chartUtil.js" language="javascript"></script>
+<script src="../../js/chart/playBackDaily.js"></script>
+    </body></html>

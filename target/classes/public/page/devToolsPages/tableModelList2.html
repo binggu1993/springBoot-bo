@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<title></title>
+<link href="../../css/bootstrap.css" rel="stylesheet" />
+<link href="../../css/font-awesome.css" rel="stylesheet" />
+<link href="../../css/bootstrap-table.css" rel="stylesheet" >
+
+</head>
+<body ng-app="menuApp" ng-controller="menuCtrl">
+	<div id="page-inner" style="background-color:#EDEDED;">
+		<div class="row">
+			<div  class="search-condition">
+				<div class="panel  panel-bottom">
+				<div style="font-weight:800;padding-left:20px;padding-top:5px;">查询窗口</div> 
+					<div class="panel-body">
+
+						<form class="form-inline"  >
+							<div class="row" >
+								<div id="searchConditionDiv" class="search-condition-div">
+                                     
+									<label for="exampleInputName2">名称：</label><input type="text"
+										ng-model="name" class="form-control search-input" id="exampleInputName2"
+										 placeholder=""> 
+										
+										<label for="exampleInputName2" class="panel-left">地址：</label>
+										
+										<input type="text" ng-model="url" class="form-control search-input" id="exampleInputName2"
+										placeholder=""> 
+										
+										<label  class="panel-left" 
+										for="exampleInputName2">图标：</label><input type="text"
+										ng-model="icon" class="form-control search-input"  id="exampleInputName2"
+										 placeholder=""> 
+										
+										
+										
+										<label  class="panel-left" 
+										for="exampleInputName2">类型：</label> <select
+										class="form-control search-input" ng-model="type">
+										<option value="">---</option>
+										<option value="MANY">有子节点</option>
+										<option value="SINGLE">无子节点</option>
+									</select>
+								</div>
+
+
+								<div id="searchBtnDiv" class="search-button panel-left">
+									<button class="btn btn-primary" ng-click="searchData()">
+										<i class="fa fa-search"></i> 查询
+									</button>
+									<button class="btn btn-info" ng-click="resetForm()">
+										<i class="fa fa-asterisk "></i> 清空
+									</button>
+								</div>
+							</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row" style="margin-top:15px;">
+				<div class="col-md-12 col-sm-4 search-data" >
+					<div class="panel  panel-left">
+						<div  style="font-weight:800;padding-left:20px;padding-top:5px;">数据窗口</div>
+						<div class="panel-body">
+
+
+
+							
+						
+ <div id="toolbar" class="btn-group"> 
+            <button id="btn_add"  class="btn btn-default operation-btn" >
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+            </button>
+							
+            <button id="btn_export" type="button" class="btn btn-default operation-btn">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>导出
+            </button>
+            <button id="btn_delete" type="button" class="btn btn-default operation-btn">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+            </button>
+        </div>
+						
+								
+								<table id="menuTable"></table>
+						
+
+
+
+
+                    
+							
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		 
+		<!-- 信息详情 -->
+		<div class="modal" id="detailModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header modal-header-padding">
+						<button class="close" data-dismiss="modal">
+							        <span class="glyphicon glyphicon-remove"></span>        
+						</button>
+						<h4 class="modal-title">详情信息</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="exampleInputEmail1">菜单编号:</label> <input type="text"
+								class="form-control" id="idView" ng-model="menuObj.id" readonly="readonly"
+								disabled="disabled">
+						</div>
+
+						<div class="form-group">
+							<label for="exampleInputEmail1">菜单名称:</label> <input type="text"
+								class="form-control"  id="nameView"  ng-model="menuObj.name" readonly="readonly"
+								disabled="disabled">
+						</div>
+
+						<div class="form-group">
+							<label for="exampleInputEmail1">父菜单:</label> <input type="text"
+								class="form-control"  id="pidView"  ng-model="menuObj.pid" readonly="readonly"
+								disabled="disabled">
+						</div>
+
+						<div class="form-group">
+							<label for="exampleInputEmail1">访问地址:</label> <input type="text"
+								class="form-control"   id="urlView" ng-model="menuObj.url" readonly="readonly"
+								disabled="disabled">
+						</div>
+
+						<div class="form-group">
+							<label for="exampleInputEmail1">图标样式:</label> <input type="text"
+								class="form-control"   id="iconView"  ng-model="menuObj.icon" readonly="readonly"
+								disabled="disabled">
+						</div>
+
+						<div class="form-group">
+							<label for="exampleInputEmail1">菜单类型:</label> <input type="text"
+								class="form-control"   id="typeView"  ng-model="menuObj.type" readonly="readonly"
+								disabled="disabled">
+						</div>
+
+						<div class="form-group">
+							<label for="exampleInputEmail1">菜单排序:</label> <input type="text"
+								class="form-control"   id="sortView"  ng-model="menuObj.sort" readonly="readonly"
+								disabled="disabled">
+						</div>
+						           
+						<div class="modal-footer modal-footer-padding">
+							<button class="btn btn-default" data-dismiss="modal">关闭</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+<script src="../../js/home/jquery-1.10.2.js"></script>
+<script src="../../js/home/bootstrap.min.js"></script>
+<script src="../../plugins/angular-1.6.5/angular.min.js" language="javascript"></script>
+<script src="../../js/home/ui-bootstrap-tpls.min.js" language="javascript"></script> 
+
+<script src="../../js/home/bootstrap-table.js"></script>
+<script src="../../js/home/bootstrap-table-zh-CN.js"></script>
+
+<script src="../../js/common/avitUtils2.js" language="javascript"></script>
+<script src="../../js/home/tableModelList2.js"></script>
+
+
+			
+</body>
+</html>

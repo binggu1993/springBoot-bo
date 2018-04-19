@@ -1,0 +1,125 @@
+
+
+#content_container {
+	min-height: 100%;
+	min-width: 500px;
+}
+
+.content_container{
+	background: #373D41;
+}
+
+.attention {
+	height: 35px;
+}
+
+.attention.border_top {
+	border-top: 1px solid #455178;
+}
+
+.attention .atten1{
+	width: 16%;
+	text-align: left;
+	padding-left: 3%;
+}
+
+.attention .atten2{
+	width: 30%;
+	padding-left: 3%;
+}
+
+.attention .atten3{
+	width: 35%;
+}
+
+ 
+
+.attention .rankitem {
+	cursor: pointer;
+}
+
+.attention .attenitem div,.attention .rankitem div {
+	float: left;
+	color: #aab2bb;
+	font-weight: bold;
+	padding-right: 1%;
+}
+
+.attention,.attention div {
+	line-height: 35px;
+}
+
+.attention div {
+	font-size: 14px;
+	height: 35px;
+	border-bottom: 1px solid #455178;
+}
+
+.ranklist {
+	border-bottom: 1px solid #596287;
+}
+
+.ranklist .atten1{
+	width: 16%;
+	text-align: left;
+	padding-left: 3%;
+}
+
+.ranklist .atten2{
+	width: 25%;
+	padding-left: 3%;
+}
+
+.ranklist .atten3{
+	width: 40%;
+}
+
+
+
+.ranklist .attenitem div,.ranklist .rankitem div{
+	float: left;
+	color: #aab2bb;
+	font-weight: bold;
+}
+
+.ranklist .rankitem,.epglist .rankitem {
+	height: 50px;
+	line-height: 50px;
+}
+
+.ranklist .rankitem:nth-of-type(even) {
+	background-color: #fff;
+}
+
+.ranklist .rankitem div {
+	font-size: 15px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.ranklist .atten3 span,.ranklist .atten4 span,.ranklist .atten5 span{
+	width: 65%;
+	background: #525e7d;
+	margin: 21px 15px 0 0;
+}
+
+.ranklist .atten3 span,.ranklist .atten3 span i,.ranklist .atten4 span,.ranklist .atten4 span i,.ranklist .atten5 span,.ranklist .atten5 span i {
+	height: 10px;
+	float: left;
+	display: inline-block;
+	border-radius: 10px;
+}
+
+.ranklist .atten3 span i,.ranklist .atten4 span i,.ranklist .atten5 span i {
+	width: 80%;
+	background: #478fe2;
+}
+
+.ranklist .atten5 span i {
+	background: #8d79d0;
+}
+
+.ranklist .rankitem .atten1,.ranklist .rankitem .atten2,.ranklist .rankitem .atten4,.ranklist .rankitem .atten5,.epglist .rankitem .atten5 {
+	color: #fff;
+}

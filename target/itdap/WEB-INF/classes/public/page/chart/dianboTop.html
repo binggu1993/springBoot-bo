@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<title></title>
+<link href="../../css/bootstrap.css" rel="stylesheet" />
+<link href="../../css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="../../css/topChart.css?v=ab16059fb6c335dcf32e2001626ee521">
+
+
+</head>
+<body ng-app="dianboTop" ng-controller="dianboTopCtrl" style="background: #373D41;">
+    <!-- 页面展示容器 -->
+    			<div class="search-condition"  style="margin-left: 0px;padding-left:0px;background: #aab2bb;">
+				<div class="panel  panel-bottom">
+					<div class="panel-body" style="background: #aab2bb;">
+
+						<form class="form-inline">
+						<div class="row">
+						<label for="exampleInputName2"  style="color:#fff;padding-left: 80px;">报表类型：</label>
+						<select   class="form-control search-input"  ng-model="thechartType" style="width: 170px;color:#373D41" ng-change="change()">
+										<option ng-repeat="chart in chartTypes" value="{{chart.type}}" >{{ chart.typeName }}</option>
+						</select>
+						
+						
+						<label for="exampleInputName2"  style="color:#fff;padding-left: 40px;">开始时间：</label>
+									<p class="input-group">
+									                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" readonly ng-model="newWordQueryObj.startTime" is-open="startPopupOpened" datepicker-options="startDateOptions" ng-required="true" close-text="关闭" clear-text="清空" current-text="今天" />
+									                  <span class="input-group-btn">
+									                    <button type="button" class="btn btn-default" ng-click="startOpen()"><i class="glyphicon glyphicon-calendar"></i></button>
+									                  </s pan>
+									                </p>
+								             
+									<label for="exampleInputName2" style="padding-left: 40px;color:#fff;">结束时间：</label>
+									 <p class="input-group">
+					                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" readonly ng-model="newWordQueryObj.endTime" is-open="endPopupOpened" datepicker-options="endDateOptions" ng-required="true" close-text="关闭" clear-text="清空" current-text="今天" />
+					                  <span class="input-group-btn">
+					                    <button type="button" class="btn btn-default" ng-click="endOpen()"><i class="glyphicon glyphicon-calendar"></i></button>
+					                  </span>
+					                </p>
+					                
+						</div>
+							<div class="row">
+								<div  class="search-condition-div" style="margin-left: 80px;padding-left:0px;background: #aab2bb;margin-top: 10px">
+									
+					                	<label for="exampleInputName2" style="color:#fff;">提供商：&nbsp; &nbsp;&nbsp;       </label>
+									
+						           <select   
+										class="form-control search-input"  ng-model="theAptitude" style="width: 170px;">
+										<option ng-repeat="aptitude in aptitudes" value="{{aptitude.code}}" >{{ aptitude.name }}</option>
+									</select>
+									
+										
+									     <label for="exampleInputName2" style="padding-left: 42px;color:#fff;">区域：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+									
+						           <select   
+										class="form-control search-input"  ng-model="theArea" style="width: 170px;">
+										<option ng-repeat="area in areas" value="{{area.areaCode}}" >{{ area.areaName }}</option>
+									</select>
+									
+									
+									 <label for="exampleInputName2" style="padding-left:62px;color:#fff;">显示条数：</label>
+						           <select   
+										class="form-control search-input"  ng-model="pagess" style="width: 170px;">
+										<option ng-repeat="pageSize in pageSizes" value="{{pageSize.num}}" >{{pageSize.numName}}</option>
+									</select>
+									
+									<button style="margin-left: 30px;" class="btn btn-info chart-condition-space" ng-click="sendSearchRequest()">
+										 查询
+									</button>
+																			
+								</div>
+
+							</div>
+							</form>
+					</div>
+				</div>
+			</div>
+		<div style="position:absolute; width:1200px;height:800px; overflow:auto">
+	    <div id="userRating"   class="content_container" ng-show="showChartType==1">
+        <div class="attention">
+            <div class="attenitem">
+                <div class="atten1">排名</div>
+                <div class="atten2">栏目</div>
+                <div class="atten3">点播人数份额</div>
+                <div class="atten4">点播人数</div>
+            </div>
+        </div>    
+        <div class="ranklist" ng-repeat="rank in rankDatas" >
+        <div ng-show="{{userTotal.useUser!=0&&rankDatas.length>1}}">
+                 <div class="rankitem" >
+                    <div class="atten1">
+                        {{$index}}
+                    </div>
+              
+                    <div class="atten2">
+                      <div ng-show="{{rank.nodeName== 'other'}}">
+                                                                            其他
+                        </div>
+                        
+                        <div ng-show="{{rank.nodeName== 'root'}}">
+                                                                            总计
+                        </div>
+                    <div ng-show="{{rank.nodeName!= 'other'&&rank.nodeName!= 'root'}}">
+                         {{rank.nodeName}}
+                        </div>
+                    </div>
+                    <div class="atten3">
+                        <span><i style="width:{{rank.useUser/userTotal.useUser*100}}%;"></i></span>
+                         {{((rank.useUser/userTotal.useUser)*100).toFixed(2)}}%</div>
+                    <div class="atten4">
+                        {{rank.useUser}}</div>
+                </div> 
+                </div>
+                <div ng-show="{{userTotal.useUser==0&&$index==0}}">
+               <div class="rankitem" >
+                    <div class="atten1">
+                       暂无数据
+                    </div>
+              
+                    <div class="atten2">
+                        </div>
+                    <div class="atten3">
+                     </div>
+                    
+                </div> 
+                </div>
+                
+                 <div ng-show="{{rankDatas.length==1}}">
+                          <div class="rankitem" >
+                    <div class="atten1">
+                       暂无数据
+                    </div>
+              
+                    <div class="atten2">
+                        </div>
+                    <div class="atten3">
+                     </div>
+                    
+                </div> 
+        </div>
+    </div>
+    </div>
+    
+    
+    
+    <div id="WatchRating"   class="content_container" ng-show="showChartType==2">
+        <div class="attention">
+            <div class="attenitem">
+                <div class="atten1">排名</div>
+                <div class="atten2">栏目</div>
+                <div class="atten3">点播次数份额</div>
+                <div class="atten4">点播次数</div>
+            </div>
+        </div>    
+        <div class="ranklist" ng-repeat="rank in rankDatas" >
+        <div ng-show="{{userTotal.useCount!=0&&rankDatas.length>1}}">
+                 <div class="rankitem" >
+                    <div class="atten1">
+                        {{$index}}
+                    </div>
+              
+                    <div class="atten2">
+                      <div ng-show="{{rank.nodeName== 'other'}}">
+                                                                            其他
+                        </div>
+                        
+                         <div ng-show="{{rank.nodeName== 'root'}}">
+                                                                            总计
+                        </div>
+                    <div ng-show="{{rank.nodeName!= 'other'&&rank.nodeName!= 'root'}}">
+                         {{rank.nodeName}}
+                        </div>
+                    </div>
+                    <div class="atten3">
+                        <span><i style="width:{{rank.useCount/userTotal.useCount*100}}%;"></i></span>
+                        {{((rank.useCount/userTotal.useCount)*100).toFixed(2)}}%</div>
+                    <div class="atten4">
+                        {{rank.useCount}}</div>
+                    
+                </div> 
+                </div>
+                <div ng-show="{{userTotal.useCount==0&&$index==0}}">
+               <div class="rankitem" >
+                    <div class="atten1">
+                       暂无数据
+                    </div>
+              
+                    <div class="atten2">
+                        </div>
+                    <div class="atten3">
+                     </div>
+                    
+                </div> 
+                </div>
+                
+                 <div ng-show="{{rankDatas.length==1}}">
+                          <div class="rankitem" >
+                    <div class="atten1">
+                       暂无数据
+                    </div>
+              
+                    <div class="atten2">
+                        </div>
+                    <div class="atten3">
+                     </div>
+                    
+                </div> 
+        </div>
+    </div>
+    </div>
+    
+    
+    
+   <div id="durationRating"   class="content_container" ng-show="showChartType==3">
+        <div class="attention">
+            <div class="attenitem">
+                <div class="atten1">排名</div>
+                <div class="atten2">栏目</div>
+                <div class="atten3">点播时长份额</div>
+                <div class="atten4">点播时长</div>
+            </div>
+        </div>    
+        <div class="ranklist" ng-repeat="rank in rankDatas" >
+        <div ng-show="{{userTotal.useDuration!=0&&rankDatas.length>1}}">
+                 <div class="rankitem" >
+                    <div class="atten1">
+                        {{$index}}
+                    </div>
+              
+             <div class="atten2">
+                      <div ng-show="{{rank.nodeName== 'other'}}">
+                                                                            其他
+                        </div>
+                        
+                         <div ng-show="{{rank.nodeName== 'root'}}">
+                                                                            总计
+                        </div>
+                    <div ng-show="{{rank.nodeName!= 'other'&&rank.nodeName!= 'root'}}">
+                         {{rank.nodeName}}
+                        </div>
+                    </div>
+                    <div class="atten3">
+                        <span><i style="width:{{rank.useDuration/userTotal.useDuration*100}}%;"></i></span>
+                        {{((rank.useDuration/userTotal.useDuration)*100).toFixed(2)}}%</div>
+                    <div class="atten4">
+                         {{rank.useDuration}}
+                        </div> 
+                </div> 
+                </div>
+                <div ng-show="{{userTotal.useDuration==0&&$index==0}}">
+               <div class="rankitem" >
+                    <div class="atten1">
+                       暂无数据
+                    </div>
+              
+                    <div class="atten2">
+                        </div>
+                    <div class="atten3">
+                     </div>
+                    
+                </div> 
+                </div>
+                
+                 <div ng-show="{{rankDatas.length==1}}">
+                          <div class="rankitem" >
+                    <div class="atten1">
+                       暂无数据
+                    </div>
+              
+                    <div class="atten2">
+                        </div>
+                    <div class="atten3">
+                     </div>
+                    
+                </div> 
+        </div>
+    </div>
+    </div>
+    
+    
+    <div id="movieTop"   class="content_container" ng-show="showChartType==4">
+        <div class="attention">
+            <div class="attenitem">
+                <div class="atten1">排名</div>
+                <div class="atten2">影片名称</div>
+                <div class="atten3">点播次数</div>
+            </div>
+        </div>    
+        <div class="ranklist" ng-repeat="rank in rankDatas" >
+        <div ng-show="{{rankDatas.length>0}}">
+                 <div class="rankitem" >
+                    <div class="atten1">
+                        {{$index+1}}
+                    </div>
+              
+              
+              
+              
+                    <div class="atten2">
+                         {{rank.assetName}}
+                    </div>
+                    <div class="atten3">
+                        <span><i style="width:{{rank.count/maxData*100}}%;"></i></span>
+                        {{rank.count}}
+                        </div>
+                    
+                </div> 
+                </div>
+                
+                 <div ng-show="{{rankDatas.length==1}}">
+                          <div class="rankitem" >
+                    <div class="atten1">
+                       暂无数据
+                    </div>
+              
+                    <div class="atten2">
+                        </div>
+                    <div class="atten3">
+                     </div>
+                    
+                </div> 
+        </div>
+    </div>
+    </div>
+    
+    
+    <div id="movieHasWatched"   class="content_container" ng-show="showChartType==5">
+        <div class="attention">
+            <div class="attenitem">
+                <div class="atten1">排名</div>
+                <div class="atten2">影片名称</div>
+                <div class="atten3">影片播放完整度</div>
+            </div>
+        </div>    
+        <div class="ranklist" ng-repeat="rank in rankDatas" >
+        <div ng-show="{{rankDatas.length>0}}">
+                 <div class="rankitem" >
+                    <div class="atten1">
+                        {{$index+1}}
+                    </div>
+              
+                    <div class="atten2">
+                         {{rank.assetName}}
+                    </div>
+                    <div class="atten3">
+                        <span><i style="width:{{rank.integrity/maxData*100}}%;"></i></span>
+                        {{(rank.integrity).toFixed(4)}}
+                    
+                </div> 
+                </div>
+                
+    </div>
+    </div>
+    </div></div>
+<script src="../../js/home/jquery-1.10.2.js"></script>
+<script src="../../js/home/bootstrap.min.js"></script>
+<script src="../../plugins/angular-1.6.5/angular.min.js" language="javascript"></script>
+<script src="../../js/home/ui-bootstrap-tpls.min.js" language="javascript"></script> 
+<script src="../../js/home/angular-locale_zh.js" language="javascript"></script>
+<script src="../../js/common/avitUtils.js" language="javascript"></script>
+<script src="../../js/common/chartUtil.js" language="javascript"></script>
+<script src="../../js/chart/dianboTop.js"></script>
+<!-- <script>
+//滚动条到页面底部加载更多案例 
+$(window).scroll(function(){
+ var scrollTop = $(this).scrollTop();    //滚动条距离顶部的高度
+ var scrollHeight = $(document).height();   //当前页面的总高度
+ var clientHeight = $(this).height();    //当前可视的页面高度
+ // console.log("top:"+scrollTop+",doc:"+scrollHeight+",client:"+clientHeight);
+ if(scrollTop + clientHeight >= scrollHeight){   //距离顶部+当前高度 >=文档总高度 即代表滑动到底部 count++;  
+ alert("hehe");
+ //每次滑动count加1
+//  filterData(serviceTypeId,industryId,cityId,count); //调用筛选方法，count为当前分页数
+ }else if(scrollTop<=0){ 
+ //滚动条距离顶部的高度小于等于0 TODO
+ //alert("下拉刷新，要在这调用啥方法？");
+ }
+});
+</script> -->
+    </body></html>

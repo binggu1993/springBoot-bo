@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta content="" name="description" />
+<meta content="webthemez" name="author" />
+<title></title>
+<link href="../../css/bootstrap.css" rel="stylesheet" />
+<link href="../../css/font-awesome.css" rel="stylesheet" />
+
+</head>
+<body ng-app="channelEditApp" ng-controller="channelEditCtrl">
+	<div id="page-inner">
+		<div class="row">
+			<div class="col-md-12 col-sm-4 width-100">
+				<div class="panel  panel-bottom" >
+					<div style="font-weight:800;padding-left:20px;padding-top:5px;">编辑信息</div> 
+					<div class="panel-body">
+						<div class="col-xs-12">
+							<div class="panel panel-default">
+								<div class="panel-body">
+									<form role="form" name="editForm" novalidate autocomplete="off"> 
+										<div class="form-group ">
+											<label for="channelName">频道名称:</label> <input
+												type="text" class="form-control form-width-200" ng-model="editObj.channelName"
+												  ng-maxlength="30" required id="channelName" name="channelName"
+												placeholder="请输入频道名称" >
+												<span class="text-danger" ng-show="editForm.channelName.$touched && editForm.channelName.$invalid">
+													<span ng-show="editForm.channelName.$error.required">必须填写</span>
+													<span ng-show="editForm.channelName.$error.maxlength">输入长度超出30</span>
+												</span>
+										</div>
+										<div class="form-group">
+											<label for="channelCode">频道编码:</label> <input
+												type="text" class="form-control form-width-200" ng-model="editObj.channelCode"
+												ng-maxlength="30" id="channelCode" name="channelCode" required placeholder="请输入频道编码"  >
+												<span class="text-danger" ng-show="editForm.channelCode.$touched && editForm.channelCode.$invalid">
+													<span ng-show="editForm.channelCode.$error.required">必须填写</span>
+													<span ng-show="editForm.channelCode.$error.maxlength">输入长度超出30</span>
+												</span>
+										</div>
+										<div class="form-group" >
+											<label for="serviceId">服务id:</label> <input
+												type="number" class="form-control form-width-100" id="serviceId" required min=0   
+												ng-model="editObj.serviceId" required placeholder="请输入频道编码">
+												<input
+												type="hidden" id="channelType" required  ng-init="editObj.channelType=1;"
+												ng-model="editObj.channelType" ng-value="1">
+										</div>										
+										<botton  type="submit" ng-click="sendEditRequest()" ng-disabled="editForm.$invalid" class="btn btn-info operation-btn">
+											<i class="fa fa-upload"></i> 提 交
+										</botton>
+										<botton class="btn btn-info operation-btn" ng-click="goToUrl('channelList.html');" >
+											<i class="fa fa-backward"></i> 返回
+										</botton>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="../../js/home/jquery-1.10.2.js"></script>
+	<script src="../../js/home/bootstrap.min.js"></script>
+	<script src="../../plugins/angular-1.6.5/angular.min.js" language="javascript"></script>
+	<script src="../../js/common/avitUtils2.js" language="javascript"></script>
+	<script src="../../js/system/channelEdit.js"></script>
+</body>
+</html>

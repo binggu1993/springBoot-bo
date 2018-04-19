@@ -1,0 +1,427 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta content="" name="description" />
+    <meta content="webthemez" name="author" />
+    <title></title>
+	<!-- Bootstrap Styles-->
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+     <!-- FontAwesome Styles-->
+    <link href="../../css/font-awesome.css" rel="stylesheet" />
+        <!-- Custom Styles-->
+    <link href="../../css/custom-styles.css" rel="stylesheet" />
+</head>
+<body>
+<!--     <div id="wrapper">
+    
+    
+        <div id="page-wrapper"> -->
+		
+            <div id="page-inner"> 
+				 
+				
+			<div class="row">
+
+			  <div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+				 消息队列
+				</div>        
+							  
+							<div class="panel-body"> 
+								<div class="alert alert-success">
+									<strong>RabbitMQ</strong> 本身支持很多的协议：AMQP，XMPP, SMTP, STOMP，也正是如此，使的它变的非常重量级，更适合于企业级的开发
+								</div>
+								<div class="alert alert-info">
+									<strong>ZeroMQ</strong> 号称最快的消息队列系统，尤其针对大吞吐量的需求场景。ZMQ能够实现RabbitMQ不擅长的高级/复杂的队列。
+								</div>
+								<div class="alert alert-warning">
+									<strong>ActiveMQ</strong> 是Apache下的一个子项目。 类似于ZeroMQ，它能够以代理人和点对点的技术实现队列
+								</div>
+								<div class="alert alert-danger">
+									<strong>Kafka</strong> 是一个高性能跨语言分布式Publish/Subscribe消息队列系统
+								</div>
+							</div>
+				</div>
+			</div>						
+				</div>								
+									
+				  <div class="row">
+                    <div class="col-md-6" style="width:50%;float:left;">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">
+                            简单的更像柱状图
+                        </div>
+                       
+                        <div class="panel-body">
+                       <div class="progress">
+  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+    <span class="sr-only">40% Complete (success)</span>
+  </div>
+</div>
+<div class="progress">
+  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+    <span class="sr-only">20% Complete</span>
+  </div>
+</div>
+<div class="progress">
+  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+    <span class="sr-only">60% Complete (warning)</span>
+  </div>
+</div>
+<div class="progress">
+  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+    <span class="sr-only">80% Complete</span>
+  </div>
+</div>
+                            </div>
+                            </div>
+                    </div>
+                    <div class="col-md-6" style="width:50%;float:left;">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">
+                            进度条柱状图
+                        </div>
+                       
+                        <div class="panel-body">
+                       <div class="progress progress-striped">
+  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+    <span class="sr-only">40% Complete (success)</span>
+  </div>
+</div>
+<div class="progress progress-striped">
+  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+    <span class="sr-only">20% Complete</span>
+  </div>
+</div>
+<div class="progress progress-striped">
+  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+    <span class="sr-only">60% Complete (warning)</span>
+  </div>
+</div>
+<div class="progress progress-striped">
+  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+    <span class="sr-only">80% Complete</span>
+  </div>
+</div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+                 <!-- /. ROW  -->
+				 	<div class="row">
+                    <div class="col-md-6" style="width:50%;float:left;">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">
+                            动态柱状图
+                        </div>
+                       
+                        <div class="panel-body">
+                       <div class="progress progress-striped active">
+  <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+    <span class="sr-only">40% Complete (success)</span>
+  </div>
+</div>
+                            </div>
+                            </div>
+                    </div>
+                      <div class="col-md-6" style="width:50%;float:left;">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">
+                            阶梯柱状图
+                        </div>
+                       
+                        <div class="panel-body">
+                       <div class="progress">
+  <div class="progress-bar progress-bar-success" style="width: 35%">
+    <span class="sr-only">35% Complete (success)</span>
+  </div>
+  <div class="progress-bar progress-bar-warning" style="width: 20%">
+    <span class="sr-only">20% Complete (warning)</span>
+  </div>
+  <div class="progress-bar progress-bar-danger" style="width: 10%">
+    <span class="sr-only">10% Complete (danger)</span>
+  </div>
+</div>
+                            </div>
+                            </div>
+                    </div>
+                </div>				
+                 <div class="row">
+                    
+                      <div class="col-md-7" style="width:50%;float:left;">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                         简单按钮样例
+                        </div>        
+                                      
+                                    <div class="panel-body"> 
+
+                    <h4>默认按钮</h4>
+                    <a href="#" class="btn btn-default">北京</a>
+                    <a href="#" class="btn btn-primary">上海</a>
+                    <a href="#" class="btn btn-danger">广州</a>
+                    <a href="#" class="btn btn-success">深圳</a>
+                    <a href="#" class="btn btn-info">天津</a>
+                    <a href="#" class="btn btn-warning">重庆</a>
+
+                  
+                    <h4>小型按钮</h4>
+                    <a href="#" class="btn btn-default btn-sm">朱德</a>
+                    <a href="#" class="btn btn-primary btn-sm">彭德怀</a>
+                    <a href="#" class="btn btn-danger btn-sm">粟裕</a>
+                    <a href="#" class="btn btn-success btn-sm">刘伯承</a>
+                    <a href="#" class="btn btn-info btn-sm">林彪</a>
+                    <a href="#" class="btn btn-warning btn-sm">徐向前</a>
+
+                   
+                    <h4>大型按钮</h4>
+
+                    <a href="#" class="btn btn-default btn-lg">麦克雷迪</a>
+                    <a href="#" class="btn btn-primary btn-lg">德维恩</a>
+                    <a href="#" class="btn btn-danger btn-lg">勒布朗</a>
+                    <a href="#" class="btn btn-success btn-lg">杜兰特</a>
+
+                   
+                </div>
+            </div>
+                          </div>
+                     <div class="col-md-5" style="width:50%;float:left;">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                           下拉按钮
+                        </div>        
+                                      
+                                    <div class="panel-body"> 
+                                          <h4>  简单下拉按钮样例 </h4>  
+                                       <div style="margin-top: 10px;">
+											
+											<div class="btn-group">
+											  <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">学历1 <span class="caret"></span></button>
+											  <ul class="dropdown-menu">
+												<li><a href="#">博士</a></li>
+												<li><a href="#">硕士</a></li>
+												<li class="divider">本科</li>
+												<li><a href="#">本科</a></li>
+												<li><a href="#">大专</a></li>
+											  </ul>
+											</div>
+											<div style="margin:5px;" class="btn-group">
+											  <button data-toggle="dropdown" class="btn btn-danger dropdown-toggle">学历2 <span class="caret"></span></button>
+											  <ul class="dropdown-menu">
+												<li><a href="#">博士</a></li>
+												<li><a href="#">硕士</a></li>
+												<li class="divider">本科</li>
+												<li><a href="#">本科</a></li>
+												<li><a href="#">大专</a></li>
+											  </ul>
+											</div>
+                                           <div style="margin:5px;" class="btn-group">
+											  <button data-toggle="dropdown" class="btn btn-warning dropdown-toggle">学历3<span class="caret"></span></button>
+											  <ul class="dropdown-menu">
+												<li><a href="#">博士</a></li>
+												<li><a href="#">硕士</a></li>
+												<li class="divider">本科</li>
+												<li><a href="#">本科</a></li>
+												<li><a href="#">大专</a></li>
+											  </ul>
+											</div>
+										 
+                                               
+                                              	<div class="btn-group">
+											  <button data-toggle="dropdown" class="btn btn-success dropdown-toggle">学历4 <span class="caret"></span></button>
+											  <ul class="dropdown-menu">
+												<li><a href="#">博士</a></li>
+												<li><a href="#">硕士</a></li>
+												<li class="divider">本科</li>
+												<li><a href="#">本科</a></li>
+												<li><a href="#">大专</a></li>
+											  </ul>
+											</div>
+										
+										  </div>
+                                       
+                                       <h4>切割型下拉按钮样例 </h4>
+                                      
+                                       <div style="margin:5px;" class="btn-toolbar">
+										
+										<div class="btn-group">
+										  <button class="btn btn-primary">三国五虎将</button>
+										  <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></button>
+										  <ul class="dropdown-menu">
+											   <li><a href="#">吕布</a></li>
+												<li><a href="#">典韦</a></li>
+												<li class="divider"></li>
+												<li><a href="#">许褚</a></li>
+												<li><a href="#">关羽</a></li>
+												<li><a href="#">赵云</a></li>
+												<li><a href="#">张飞</a></li>
+										  </ul>
+										</div>
+										<div class="btn-group">
+										  <button class="btn btn-danger">三国五虎将</button>
+										  <button data-toggle="dropdown" class="btn btn-danger dropdown-toggle"><span class="caret"></span></button>
+										  <ul class="dropdown-menu">
+												   <li><a href="#">吕布</a></li>
+												<li><a href="#">典韦</a></li>
+												<li class="divider"></li>
+												<li><a href="#">许褚</a></li>
+												<li><a href="#">关羽</a></li>
+												<li><a href="#">赵云</a></li>
+												<li><a href="#">张飞</a></li>
+										  </ul>
+										</div>
+                                           <div class="btn-group">
+										  <button class="btn btn-warning">三国五虎将</button>
+										  <button data-toggle="dropdown" class="btn btn-warning dropdown-toggle"><span class="caret"></span></button>
+										  <ul class="dropdown-menu">
+												   <li><a href="#">吕布</a></li>
+												<li><a href="#">典韦</a></li>
+												<li class="divider"></li>
+												<li><a href="#">许褚</a></li>
+												<li><a href="#">关羽</a></li>
+												<li><a href="#">赵云</a></li>
+												<li><a href="#">张飞</a></li>
+										  </ul>
+										</div>
+									 
+										
+									   
+									  </div>
+                                       
+
+                                       <h4>图表按钮</h4>                                       
+										
+											<button class="btn btn-default"><i class=" fa fa-refresh "></i> 刷新</button>
+											<button class="btn btn-primary"><i class="fa fa-edit "></i> 编辑</button>
+											<button class="btn btn-danger"><i class="fa fa-pencil"></i> 删除</button>
+										
+															
+									
+
+                                        </div>
+                                    </div>
+                    </div>
+                    </div>
+                <!-- /. ROW  -->
+                <div class="row">
+                    <div class="col-md-6" style="width:50%;float:left;">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">
+                            圆形图标按钮
+                        </div>
+                       
+                        <div class="panel-body">
+                             <br /> <br />
+                            <button type="button" class="btn btn-default btn-circle"><i class="fa fa-check"></i>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-circle"><i class="fa fa-list"></i>
+                            </button>
+                            <button type="button" class="btn btn-success btn-circle"><i class="fa fa-link"></i>
+                            </button>
+                            <button type="button" class="btn btn-info btn-circle"><i class="fa fa-check"></i>
+                            </button>
+                            <button type="button" class="btn btn-warning btn-circle"><i class="fa fa-money"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-circle"><i class="fa fa-heart"></i>
+                            </button>
+                           <br />
+                             
+                        </div>
+                        
+                    </div>
+                    </div>
+                    <div class="col-md-6" style="width:50%;float:left;">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">
+                            图表大小样式: 
+                        </div>
+                       
+                        <div class="panel-body">
+                            <br />  
+                            <i class="fa fa-flask "></i>
+                            
+                             <i class="fa fa-flask fa-2x"></i>
+                              <i class="fa fa-flask fa-3x"></i>
+                              <i class="fa fa-flask fa-4x"></i>
+                              <i class="fa fa-flask fa-5x"></i>
+                              <br />
+                             
+                        </div>
+                        
+                    </div>
+                    </div>
+                </div>
+                 <!-- /. ROW  -->
+                
+                <div class="row">
+                    <div class="col-md-6" style="width:50%;float:left;">
+                       
+                     <!--  Modals-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                           模态窗口
+                        </div>
+                        <div class="panel-body">
+                            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                              点击打开模态窗口
+                            </button>
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel">华东野战军</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            
+                                            
+                                            华野从全面内战爆发开始就一鸣惊人，苏中七战七捷中，粟裕以三万多人歼灭了国民党五万多人，这其中百分之九十以上是国民党的中央军整编师的正规部队。接着进行了几个大的战役：两淮保卫战、宿北战役、鲁南战役、莱芜战役、孟梁崮战役，每个战役都消灭了数万国民党中央军部队。而同期，东北野战军从开始被国民党追着向北跑，到后来的战略防务，除了四保临江，其余没有一个像样的战役，一次歼灭国民党一个整编师都没有。二野初期打得不错，后来进入大别山就没有多少战果了，当然陈谢大军表现不错。一野由于先天条件差，但表现得还是不错的。在解放战争的初期和中期，华野歼灭的国民党军队人数比其它几个野战军歼灭的总和还要多！
+                                            
+                                            
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                            <button type="button" class="btn btn-primary">保存修改</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- End Modals-->
+                
+                    </div>
+                     <div class="col-md-6" style="width:50%;float:left;">
+                          <div class="panel panel-default">
+                        <div class="panel-heading">
+                            第三野战军
+                        </div>
+                        <div class="panel-body">
+                          华野从全面内战爆发开始就一鸣惊人，苏中七战七捷中，粟裕以三万多人歼灭了国民党五万多人，这其中百分之九十以上是国民党的中央军整编师的正规部队。接着进行了几个大的战役：两淮保卫战、宿北战役、鲁南战役、莱芜战役、孟梁崮战役，每个战役都消灭了数万国民党中央军部队。而同期，东北野战军从开始被国民党追着向北跑，到后来的战略防务，除了四保临江，其余没有一个像样的战役，一次歼灭国民党一个整编师都没有。
+                           
+                             </div>
+                              </div>
+                     </div>
+                </div>
+                <!-- /. ROW  -->
+				</div>
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+     <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="../../js/home/jquery-1.10.2.js"></script>
+      <!-- Bootstrap Js -->
+    <script src="../../js/home/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="../../js/home/jquery.metisMenu.js"></script>
+      <!-- Custom Js -->
+    <script src="../../js/home/custom-scripts.js"></script>
+ 
+</body>
+</html>

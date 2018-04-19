@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta charset="utf-8" />
+<title>智能终端数据分析平台</title>
+
+<!-- 样式导入 -->
+<link href="css/bootstrap.css" rel="stylesheet" />
+<link href="css/font-awesome.css" rel="stylesheet" />
+<link href="plugins/morris/morris-0.4.3.min.css" rel="stylesheet" />
+<link href="css/custom-styles.css" rel="stylesheet" />
+
+</head>
+
+<body>
+	<div id="wrapper">
+
+		<!-- top页面 -->
+		<nav id="topPage" class="navbar navbar-default top-navbar" role="navigation"></nav>
+
+		<!--菜单页面 -->
+		<nav id="menuPage" class="navbar-default navbar-side" role="navigation"></nav>
+
+		<div id="page-wrapper">
+
+			<!--面包屑页面 -->
+			<div id="breadcrumbsPage" class="header"></div> 
+
+			<!-- mian页面  -->
+			<div id="mainPage" class="header">
+                 <iframe frameborder="0" width="100%"  id="mainIframe"	height="1200px"   min-height="1200px" name="mainIframe"  scrolling="no"></iframe> 
+			</div>
+
+		</div>
+	</div>
+	
+	<!-- JS Scripts-->
+	 <script src="js/home/jquery-1.10.2.js"></script>
+     <script src="js/home/bootstrap.min.js"></script>
+     <script src="js/home/home.js"  language="javascript"></script>
+
+    <script language="javascript">
+		(function()
+		{
+			 
+		   	 $("#menuPage").load("page/home/menu.html", function() 
+		   	 {
+			     menuTools.loadRootMenu();
+		   	 });
+		   	 
+			 $("#topPage").load("page/home/top.html", function() 
+		   	 {
+			     menuTools.sideNavEvent();
+			     //$("#sideNav").click();
+		   	 });
+		
+		   	 $("#breadcrumbsPage").load("page/home/breadcrumbs.html");
+		})();
+	</script>
+	
+</body>
+
+</html>

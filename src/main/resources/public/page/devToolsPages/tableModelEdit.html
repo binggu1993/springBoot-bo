@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta content="" name="description" />
+<meta content="webthemez" name="author" />
+<title></title>
+<link href="../../css/bootstrap.css" rel="stylesheet" />
+<link href="../../css/font-awesome.css" rel="stylesheet" />
+
+</head>
+<body ng-app="menuEditApp" ng-controller="menuEditCtrl">
+
+	<div id="page-inner">
+
+
+		<div class="row">
+
+			<div class="col-md-12 col-sm-4 width-100">
+				<div class="panel  panel-bottom" >
+					<div style="font-weight:800;padding-left:20px;padding-top:5px;">编辑菜单</div> 
+					<div class="panel-body">
+
+
+						<div class="col-xs-12">
+							<div class="panel panel-default">
+
+								<div class="panel-body">
+									<form role="form" name="menuForm" ng-submit="sendEditRequest();"> 
+										<div class="form-group">
+											<label for="exampleInputEmail1">菜单名称:</label> <input
+												type="text" class="form-control form-width-300" ng-model="menuObj.name"
+												  ng-maxlength="200" required id="name"
+												placeholder="请输入菜单名称" >
+										</div>
+
+
+
+
+										<div class="form-group">
+											<label for="exampleInputEmail1">菜单类型:</label>
+
+											<div class="radio3 radio-check radio-inline">
+												<input type="radio" ng-click="radioEvent(false,'pidDiv');"
+													ng-model="menuObj.type" id="oneLevel" name="menuType"
+													value="MANY"> 一级菜单
+											</div>
+											<div class="radio3 radio-check radio-success radio-inline">
+												<input type="radio" ng-click="radioEvent(true,'pidDiv');"
+													id="secLevel" ng-model="menuObj.type" name="menuType"
+													value="SINGLE"   > 二级菜单
+											</div>
+
+
+
+
+
+
+
+										</div>
+
+
+										<div id="pidDiv" class="form-group" >
+											<label for="exampleInputPassword1">父级菜单:</label>
+									
+											
+											
+											<select ng-model="menuObj.pid"  class="form-control form-width-200"  >
+												<option ng-repeat="x in rootMenus" value="{{x.id}}" >{{x.name}}</option>
+											</select>
+
+
+										</div>
+
+
+										<div class="form-group">
+											<label for="exampleInputEmail1">跳转地址:</label> <input
+												type="text" class="form-control form-width-400" ng-model="menuObj.url"
+												id="url" value="5555555" required placeholder="请输入跳转地址"  >
+										</div>
+
+
+
+
+
+
+
+
+
+
+
+
+										<div class="form-group">
+											<label for="exampleInputEmail1">是否展示:</label>
+
+
+
+											<div class="radio3 radio-check radio-inline">
+												<input type="radio" id="radio4" name="showFlag"
+													ng-model="menuObj.showFlag"
+													ng-click="radioEvent(true,'sortDiv');" value="Y"
+													checked="checked"> 展示
+											</div>
+											<div class="radio3 radio-check radio-success radio-inline">
+												<input type="radio" id="radio5" name="showFlag"
+													ng-model="menuObj.showFlag"
+													ng-click="radioEvent(false,'sortDiv');" value="N"  >
+												隐藏
+											</div>
+										</div>
+
+
+										<div id="sortDiv" class="form-group" >
+											<label for="exampleInputEmail1">展示排序:</label> <input
+												type="number" class="form-control form-width-100" required min=1 max=999   
+												ng-model="menuObj.sort"  >
+										</div>
+
+
+
+										<button  type="submit"    class="btn btn-info operation-btn">
+											<i class="fa fa-upload"></i> 提 交
+										</button>
+										<button class="btn btn-info operation-btn" ng-click="goToUrl('tableModelList.html');" >
+											<i class="fa fa-backward"></i> 返回
+										</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+
+
+	</div>
+	
+	
+
+
+
+	<script src="../../js/home/jquery-1.10.2.js"></script>
+	<script src="../../js/home/bootstrap.min.js"></script>
+	<script src="../../plugins/angular-1.6.5/angular.min.js" language="javascript"></script>
+	<script src="../../js/common/avitUtils.js" language="javascript"></script>
+	<script src="../../js/home/tableModelEdit.js"></script>
+</body>
+</html>
