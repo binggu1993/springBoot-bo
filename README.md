@@ -1,5 +1,6 @@
 # springBoot-bo
 
+
 基于spring-boot开发的后台管理系统，实现以下功能：
 1.实现前后端分离，前端数据请求全部通过ajax等方式异步请求数据；
 2.后台view层基于restController实现restful借口，整合swagger2生成restful api；
